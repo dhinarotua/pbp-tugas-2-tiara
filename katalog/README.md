@@ -1,8 +1,9 @@
-# Link deploy: https://pbp-tugas-2-tiara.herokuapp.com/katalog/
+## Link deploy: https://pbp-tugas-2-tiara.herokuapp.com/katalog/
 Nama: Dhina Rotua Mutiara
-NPM: 2106702182
+<br />NPM: 2106702182
 
 ### Bagan request client ke web aplikasi berbasis Django beserta responnya
+![Untitled - Frame 1 (1)](https://user-images.githubusercontent.com/100504894/190307069-0072fb7d-4c65-457e-b0be-5ad18298420c.jpg)
 Pada Django, terdapat 2 fase, yaitu fase request dan fase response. Pada fase request, request client akan diterima oleh web server yang selanjutnya disalurkan ke WSGI. WSGI akan memetakan HTTP request ke python objects dan mengeksekusi stack aplikasi. Setelah Django mengeksekusi request process dari stack, Django akan memuat konfigurasi URL project yang dibuat dalam file urls.py. Tahap akhir dari request adalah view. Jika urls.py berguna untuk menunjukkan lokasi informasi, views.py berguna untuk menampilkan informasi. Ketika route match, view akan menerima HTTP request/request data yang dibutuhkan ke model.
 Selanjutnya adalah fase response. Setelah model menerima request dari views, terjadi komunikasi antara model dengan database. Kemudian, database akan mengirimkan data ke model. Data models dan entity & relationship antar data akan disimpan di models.py. Setelah itu, model akan mengirimkan data ke views. Setalah data diterima oleh views, views akan memilih template HTML yang akan didisplay ke client (HTTP response). Django akan mengkonversi HTTP response ke WSGI response yang sesuai dan mengirimnya ke web server. Web Server akan mengubah WSGI response ke format aslinya dan mengirimnya ke client.
 
