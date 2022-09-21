@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "The Platform",
+            "rating": 5,
+            "release_date": "2019-11-08",
+            "review": "BAGUUUUUS BANGET!!!!"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": true,
+            "title": "Hush",
+            "rating": 5,
+            "release_date": "2016-10-10",
+            "review": "serem bet tp santuy!!!!"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": false,
+            "title": "Dora",
+            "rating": 0,
+            "release_date": "2010-01-01",
+            "review": "lucuuu"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": true,
+            "title": "Avengers",
+            "rating": 4,
+            "release_date": "2018-02-02",
+            "review": "serem action"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "Diego",
+            "rating": 2,
+            "release_date": "2019-10-08",
+            "review": "keren"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": false,
+            "title": "Spongebob",
+            "rating": 5,
+            "release_date": "2019-11-08",
+            "review": "mantap"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": false,
+            "title": "Tukang Bubur Naik Haji",
+            "rating": 3,
+            "release_date": "2016-11-08",
+            "review": "seru sih tapi banyak!"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": true,
+            "title": "Bidadari 7 Dunia",
+            "rating": 4,
+            "release_date": "2019-12-08",
+            "review": "anjay"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": true,
+            "title": "Blackpink",
+            "rating": 5,
+            "release_date": "2019-11-30",
+            "review": "keren bgt"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": false,
+            "title": "Dont Breathe",
+            "rating": 3,
+            "release_date": "2019-09-08",
+            "review": "serem tapi seru!"
+        }
+    }
+]
