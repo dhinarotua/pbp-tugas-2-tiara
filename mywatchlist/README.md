@@ -8,8 +8,8 @@ Nama: Dhina Rotua Mutiara
 
 ### Perbedaan antara JSON, XML, dan HTML
 JSON merupakan format pertukaran data yang berfungsi untuk mengirimkan data dengan cara mengurai data. JSON juga lebih mudah dibaca oleh manusia dan dapat diakses oleh berbagai bahasa pemrograman. JSON menyimpan data dalam format map (key/value). JSON hanya mendukung beberapa tipe data. Transmisi data JSON cenderung lebih cepat karena menggunakan sedikit memori.
-XML merupakan bahasa markup yang memiliki fungsi yang sama dengan JSON, yaitu untuk menyimpan dan mengirimkan data. Namun, XML cenderung lebih rumit. XML menyimpan data sebagai tree structure. XML mendukung berbagai tipe data yang kompleks. Transmisi data XML cenderung lebih lambat.
-HTML berbeda dengan JSON dan XML. HTML lebih berfungsi untuk menampilkan data, bukan pengiriman data. Oleh karena itu, HTML tidak memiliki informasi mengenai isi data. HTML juga memiliki sintaks yang lebih sederhana dan mudah dimengerti. Tidak seperti XML yang wajib menggunakan end tag, end tag pada HTML bersifat opsional.
+<br />XML merupakan bahasa markup yang memiliki fungsi yang sama dengan JSON, yaitu untuk menyimpan dan mengirimkan data. Namun, XML cenderung lebih rumit. XML menyimpan data sebagai tree structure. XML mendukung berbagai tipe data yang kompleks. Transmisi data XML cenderung lebih lambat.
+<br />HTML berbeda dengan JSON dan XML. HTML lebih berfungsi untuk menampilkan data, bukan pengiriman data. Oleh karena itu, HTML tidak memiliki informasi mengenai isi data. HTML juga memiliki sintaks yang lebih sederhana dan mudah dimengerti. Tidak seperti XML yang wajib menggunakan end tag, end tag pada HTML bersifat opsional.
 
 ### Alasan Penggunaan Data Delivery
 Data delivery diperlukan dalam pengimplementasian sebuah platform karena data delivery berfungsi untuk penyimpanan dan pengiriman data sehingga kita dapat melakukan pertukaran data antar platform dengan lebih cepat dan mudah.
