@@ -5,30 +5,43 @@
   <h1>Tugas 4 Assignment PBP</h1>
 
   {% if user.is_authenticated %}
-    <h2>Selamat datang, {{ user.get_username }}!</h2>
+    <h2 style="color:rgb(0, 0, 255)">Selamat datang, {{ user.get_username }}!</h2>
 
     <br>
 
-    <button><a href="{% url 'todolist:create_task' %}">Create Task</a></button>
+    <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
 
     <br>
     <br>
 
-    <table>
-        <table border = "1" width = "70%">
+    <table class="center">
+        <table border = "1" width = "70%" class="center">
         <tr>
-        <th>Title</th>
         <th>Date Added</th>
+        <th>Title</th>
         <th>Description</th>
+        <th>Status</th>
+        <th>●●●</th>
         </tr>
 
         {% for task in list_task %}
-    <tr>
-        <th>{{task.title}}</th>
-        <th>{{task.date}}</th>
-        <th>{{task.description}}</th>
-    </tr>
-    {% endfor %}
+            <tr>
+                <th>{{task.date}}</th>
+                <th>{{task.title}}</th>
+                <th>{{task.description}}</th>
+
+                {% if task.is_finished %}
+                    <td>Selesai</td>
+                {% else %}
+                    <td>Belum Selesai</td>
+                {% endif %}
+
+                <td>
+                    <button><a href="{% url 'todolist:status' task.id %}">Change Status</a></button>
+                    <button><a href="{% url 'todolist:delete' task.id %}">Delete</a></button>
+                </td>
+            </tr>
+        {% endfor %}
     </table>
 
   {% endif %}
