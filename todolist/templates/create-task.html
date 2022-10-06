@@ -2,11 +2,30 @@
 
  {% block content %}
 
-  <h1>Create Task</h1>
+ <style>
+    .foto {
+        background-image: url(https://wallpapercave.com/wp/wp4530778.jpg);
+        height: 150vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .tyrjlk {
+        margin: auto;
+    }
+ </style>
+
+ <body class="foto">
+    <section class="tyrjlk">
+    <br>
+    <br>
+    <br>
+    <br>
+  <h1 class="text text-white" style="text-align:center;">Create Task</h1>
 
     <form method="POST">
         {% csrf_token %}
-        <table>  
+        <table style="margin-left:auto;margin-right:auto;">  
             {{ form.as_table }}  
             <tr>  
                 <td></td>
@@ -14,5 +33,6 @@
             </tr>  
         </table> 
     </form>
-
+    </section>
+</body>
 {% endblock content %}

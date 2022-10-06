@@ -2,50 +2,89 @@
 
  {% block content %}
 
-  <h1>Tugas 4 Assignment PBP</h1>
+ <nav class="navbar navbar-expand-lg text-light bg-primary">
+    <div class="container-fluid">
+        <span class="navbar-text text-light">
+            {{nama}}
+          </span>
 
-  {% if user.is_authenticated %}
-    <h2 style="color:rgb(0, 0, 255)">Selamat datang, {{ user.get_username }}!</h2>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <a class="navbar-brand text-light" href="{% url 'todolist:logout' %}">Logout</a>
+      </div>
+    </div>
+  </nav>
 
-    <br>
+  <br>
+  <br>
+  <div>
+    <h2 style="color:rgb(100, 100, 255); text-align:center" >Selamat datang, {{ user.get_username }}!</h2>
+    
+</div>
 
-    <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+ <section  class="box">
+        <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+        {% if user.is_authenticated %}
+            {% for task in list_task %}
+                <div class="card">
+                    <h4 class="card-title">{{task.title}}</h4>
+                    <p class="card-text">
+                        {{task.date}} <br> {{task.description}}
+                    </p>
+                    
+                    <p class="card-text">
+                        <small class="text-muted">
+                            {% if task.is_finished %}
+                                <td>Selesai</td>
+                            {% else %}
+                                <td>Belum Selesai</td>
+                            {% endif %}
+                        </small>
+                    </p>
+                    <td>
+                        <button><a href="{% url 'todolist:status' task.id %}">Change Status</a></button>
+                        <button><a href="{% url 'todolist:delete' task.id %}">Delete</a></button>
+                    </td>
 
-    <br>
-    <br>
+                </div>
+                </div>
+            {% endfor %}
+            <br>
+            {% endif %}
+    </div>
+</section>
 
-    <table class="center">
-        <table border = "1" width = "70%" class="center">
-        <tr>
-        <th>Date Added</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>●●●</th>
-        </tr>
+<style>
+    body {
+        background-color:rgb(217, 255, 246);
+    }
+    .box {
+        width:500px;
+        margin: 50px auto;
+        padding:5px;
+        border-radius: 3px;
+        align-content: center;
+    }
+    .card {
+        background-color:rgb(255, 220, 246);
+        border-radius: 3px;
+        padding: 10px; 
+        margin: 10px;
+    }
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+    .card-button {
+        display: inline-flex;
+        justify-content: right;
+    }
+    .outside-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
-        {% for task in list_task %}
-            <tr>
-                <th>{{task.date}}</th>
-                <th>{{task.title}}</th>
-                <th>{{task.description}}</th>
-
-                {% if task.is_finished %}
-                    <td>Selesai</td>
-                {% else %}
-                    <td>Belum Selesai</td>
-                {% endif %}
-
-                <td>
-                    <button><a href="{% url 'todolist:status' task.id %}">Change Status</a></button>
-                    <button><a href="{% url 'todolist:delete' task.id %}">Delete</a></button>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
-  {% endif %}
-<br>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-
-{% endblock content %}
+ {% endblock content %}
