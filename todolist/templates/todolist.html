@@ -1,59 +1,114 @@
 {% extends 'base.html' %}
 
  {% block content %}
+<head>
 
- <nav class="navbar navbar-expand-lg text-light bg-primary">
-    <div class="container-fluid">
-        <span class="navbar-text text-light">
-            {{nama}}
-          </span>
-
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        </ul>
-        <a class="navbar-brand text-light" href="{% url 'todolist:logout' %}">Logout</a>
-      </div>
-    </div>
-  </nav>
-
-  <br>
-  <br>
-  <div>
-    <h2 style="color:rgb(100, 100, 255); text-align:center" >Selamat datang, {{ user.get_username }}!</h2>
-    
-</div>
-
- <section  class="box">
-        <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
-        {% if user.is_authenticated %}
-            {% for task in list_task %}
-                <div class="card">
-                    <h4 class="card-title">{{task.title}}</h4>
-                    <p class="card-text">
-                        {{task.date}} <br> {{task.description}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            const card = (data) => `<div class="card">
+                <h4 class="card-title">${data.fields.title}</h4>
+                <p class="card-text">
+                    ${data.fields.date} 
+                    <br> 
+                    ${data.fields.description}
                     </p>
                     
                     <p class="card-text">
                         <small class="text-muted">
-                            {% if task.is_finished %}
-                                <td>Selesai</td>
-                            {% else %}
-                                <td>Belum Selesai</td>
-                            {% endif %}
+                            ${data.fields.is_finished ? 'Selesai' : 'Belum Selesai'}
                         </small>
                     </p>
                     <td>
-                        <button><a href="{% url 'todolist:status' task.id %}">Change Status</a></button>
-                        <button><a href="{% url 'todolist:delete' task.id %}">Delete</a></button>
+                        <button><a href="/todolist/change/${data.pk}">Change Status</a></button>
+                        <button><a href="/todolist/delete/${data.pk}">Delete</a></button>
                     </td>
+                                
+                </div>`
+                                
+            const addCard = (data) => {
+                return $('.box').append(card(data))
+            }   
+        
+            $.get('/todolist/json', function (todo) {
+                todo.map((task) => {
+                    addCard(task)
+                })
+            })
 
-                </div>
-                </div>
-            {% endfor %}
-            <br>
-            {% endif %}
+            $(`#add-task`).click(function(){
+                if ($('#title').val() && $('#description').val()){
+                    $.post('/todolist/add-task/', {
+                            title: $('#title').val(),
+                            description: $('#description').val(),
+                        },
+                        function(res, status){
+                            if(status == 'success'){
+                                addCard(res)
+                                $('#title').val('')
+                                $('#description').val('')
+                            }
+                        },
+                    )
+                    return false
+                }
+            })
+        });
+    
+    </script>
+</head>
+
+<section  class="box">
+    <div>
+        <h2 style="color:rgb(100, 100, 255); text-align:center" >Selamat datang, {{ user.get_username }}!</h2>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="d-grid gap-2 d-md-block">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Tambah Task Baru
+        </button>
+        <button class="btn btn-danger" type="button"><a href="{% url 'todolist:logout' %}" style="color: rgb(255, 255, 255)">Logout</a></button>
     </div>
 </section>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>Title:</td>
+                        <td><input type="text" name="title" class="form-control" id="title"></td>
+                    </tr>
+                            
+                    <tr>
+                        <div>
+                            <td>Description: </td>
+                            <td><input type="text" name="description" class="form-control" id="description"></td>
+                        </div>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="add-task" name="submit" class="btn btn-primary" data-bs-dismiss="modal">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 <style>
     body {

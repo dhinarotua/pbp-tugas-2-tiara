@@ -10,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from todolist.create_form import TaskForm
+from django.http import HttpResponse
+from django.core import serializers
+from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
@@ -81,3 +85,26 @@ def delete(request, id):
     task = Task.objects.get(id = id)
     task.delete()
     return redirect('todolist:show_todolist')
+
+def show_json_by_id(request):
+    task = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", task), content_type="application/json")
+
+@csrf_exempt
+def add_task(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        task = Task.objects.create(title=title, description=description,date=datetime.date.today(), is_finished=False, user=request.user)
+
+        context = {
+            'fields':{
+                'title':task.title,
+                'description':task.description,
+                'is_finished':task.is_finished,
+                'date':task.date,
+            },
+            'pk':task.pk
+        }
+        
+        return JsonResponse(context)
