@@ -38,7 +38,7 @@
 
             $(`#add-task`).click(function(){
                 if ($('#title').val() && $('#description').val()){
-                    $.post('/todolist/add-task/', {
+                    $.post('/todolist/add/', {
                             title: $('#title').val(),
                             description: $('#description').val(),
                         },
